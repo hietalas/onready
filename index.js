@@ -12,10 +12,6 @@ function mostrarVehiculos() {
         this.precio = precio;
         this.cilindrada = cilindrada;
     
-//        this.masCaro = function masCaro();
-//        this.masBarato = function masBarato();
-//        this.modeloConY = function modeloConY();
-//        this.ordenar = function ordenar();
     };
     
     //Creación de instancias de Vehículo
@@ -57,6 +53,5 @@ function mostrarVehiculos() {
         "Vehículo más barato: " + masBarato +
         "Vehículo que contiene en el modelo la letra ‘Y’: " + modeloConY    
     )
-    
     
 }
