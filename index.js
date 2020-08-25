@@ -3,34 +3,49 @@
 
 function mostrarVehiculos() {
     
-    //Objeto Vehículo
-    function Vehiculo(marca, modelo, puertas, cilindrada, precio, masCaro, masBarato, letraY, ordenar) {
+    //Clase Vehículo
+    class Vehiculo {
+        constructor(marca, modelo, precio) {
     //Inicialización de atributos
-        this.marca = marca;
-        this.modelo = modelo;
-        this.puertas = puertas;
-        this.precio = precio;
-        this.cilindrada = cilindrada;
+            this._marca = marca;
+            this._modelo = modelo;
+            this._precio = precio;
+        }
+    }
     
-    };
+    //Clase auto con herencia
+    class Auto extends Vehiculo {
+        constructor(marca, modelo, precio, puertas) {
+            super(marca, modelo, precio);
+            this._puertas = puertas;
+        }
+    }
     
-    //Creación de instancias de Vehículo
-    var veh1 = new Vehiculo("Peugeot","206","4","","200000");
-    var veh2 = new Vehiculo("Honda","Titan","","125","60000");
-    var veh3 = new Vehiculo("Peugeot","208","5","","250000");
-    var veh4 = new Vehiculo("Yamaha","YBR","","160","80500.50");
+    //Clase moto con herencia
+    class Moto extends Vehiculo {
+        constructor(marca, modelo, precio, cilindrada) {
+            super(marca, modelo, precio);
+            this._cilindrada = cilindrada;
+        }
+    }
+    
+    //Creación de instancias de vehículos
+    var aut1 = new Auto("Peugeot","206","4","","200000");
+    var aut2 = new Auto("Peugeot","208","5","","250000");
+    var mot1 = new Moto("Honda","Titan","","125","60000");
+    var mot2 = new Moto("Yamaha","YBR","","160","80500.50");
     
     //Métodos
     function masCaro() {
-        var vehiculos = [veh1,veh2,veh3,veh4];
-        vehiculos.sort(a, b){return a.precio - b.precio};
-        return vehiculos.0;
+        var vehiculos = [aut1,aut2,mot1,mot2];
+        vehiculos.sort(function(a, b){return a.precio - b.precio});
+        return vehiculos[0];
     };
     
     function masBarato() {
-        var vehiculos = [veh1,veh2,veh3,veh4];
+        var vehiculos = [aut1,aut2,mot1,mot2];
         vehiculos.sort(a,b) {return a.precio - b.precio;};
-        return vehiculos.3;
+        return vehiculos[vehiculos.length-1];
     };
     
     function modeloConY(vehiculo) {
@@ -41,7 +56,6 @@ function mostrarVehiculos() {
     };
     
     //Impresión en pantalla
-    
     console.log(
     
         "Marca: Peugeot // Modelo: 206 // Puertas: 4 // Precio: $200.000,00\n"
@@ -53,5 +67,5 @@ function mostrarVehiculos() {
         "Vehículo más barato: " + masBarato +
         "Vehículo que contiene en el modelo la letra ‘Y’: " + modeloConY    
     )
-    
+ 
 }
