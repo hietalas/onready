@@ -30,42 +30,51 @@ function mostrarVehiculos() {
     }
     
     //Creación de instancias de vehículos
-    var aut1 = new Auto("Peugeot","206","4","","200000");
-    var aut2 = new Auto("Peugeot","208","5","","250000");
-    var mot1 = new Moto("Honda","Titan","","125","60000");
-    var mot2 = new Moto("Yamaha","YBR","","160","80500.50");
+    var aut1 = new Auto("Peugeot","206","200000","4");
+    var aut2 = new Auto("Peugeot","208","250000","5");
+    var mot1 = new Moto("Honda","Titan","60000","125");
+    var mot2 = new Moto("Yamaha","YBR","80500.50","160");
     
     //Métodos
+    var vehiculos = [aut1,mot1,aut2,mot2];
+
     function masCaro() {
-        var vehiculos = [aut1,aut2,mot1,mot2];
         vehiculos.sort(function(a, b){return a.precio - b.precio});
         return vehiculos[0];
-    };
+    }
     
     function masBarato() {
-        var vehiculos = [aut1,aut2,mot1,mot2];
-        vehiculos.sort(a,b) {return a.precio - b.precio;};
+        vehiculos.sort(function(a,b) {return a.precio - b.precio});
         return vehiculos[vehiculos.length-1];
-    };
+    }
     
     function modeloConY(vehiculo) {
-        for(i=0,i<4,i++) {
+        for(i=0; i<vehiculos.length; i++) {
             if(vehiculo.modelo.includes("y"))
                 return vehiculo;
-        };
-    };
+        }
+    }
     
-    //Impresión en pantalla
-    console.log(
+    //Construcción de lo que se va a mostrar en pantalla
+    var stringSalida = "";
     
-        "Marca: Peugeot // Modelo: 206 // Puertas: 4 // Precio: $200.000,00\n"
-        "Marca: Honda // Modelo: Titan // Cilindrada: 125c // Precio: $60.000,00\n"
-        "Marca: Peugeot // Modelo: 208 // Puertas: 5 // Precio: $250.000,00\n"
-        "Marca: Yamaha // Modelo: YBR // Cilindrada: 160c // Precio: $80.500,50\n\n"
+    for(i=0; i<vehiculos.length; i++) {
+        stringsalida += "Marca:\t" + vehiculos[i]._marca + 
+                        "Modelo:\t" + vehiculos[i]._modelo;
+        if(vehiculos[i] instanceof Auto) {
+            stringsalida += "Puertas:\t" + vehiculos[i]._puertas
+        }
+            else if(vehiculos[i] instanceof Moto) {
+                stringsalida += "Cilindrada:\t" + vehiculos[i]._cilindrada
+            } 
+        stringsalida += "Precio:\t" + vehiculos[i]._precio + "\n"
+    }
+    
+    stringsalida += "Vehículo más caro: " + masCaro + "\n";
+    stringsalida += "Vehículo más barato: " + masBarato + "\n";
+    stringsalida += "Vehículo que contiene en el modelo la letra ‘Y’: " + modeloConY + "\n";
 
-        "Vehículo más caro: " + masCaro +
-        "Vehículo más barato: " + masBarato +
-        "Vehículo que contiene en el modelo la letra ‘Y’: " + modeloConY    
-    )
+    //Impresión en pantalla
+    console.log(stringSalida);
  
 }
